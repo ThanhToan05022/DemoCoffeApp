@@ -36,7 +36,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/products:
+ * /api/getProducts:
  *   get:
  *     summary: Lấy danh sách sản phẩm
  *     tags: [Products]
@@ -56,7 +56,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/products:
+ * /api/createProducts:
  *   post:
  *     summary: Tạo sản phẩm mới
  *     description: Upload ảnh bằng field "image" (multer), server sẽ lưu tên file vào field imageUrl.
@@ -94,7 +94,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/products/{id}:
+ * /api/getdetailsProducts/{id}:
  *   get:
  *     summary: Lấy chi tiết sản phẩm theo ID
  *     tags: [Products]
@@ -119,7 +119,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/products/search:
+ * /api/findProducts/search:
  *   get:
  *     summary: Tìm sản phẩm theo tên (regex, không phân biệt hoa thường)
  *     tags: [Products]
@@ -148,7 +148,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/products/category/{categoryName}:
+ * /api/getProductsByCategory/category/{categoryName}:
  *   get:
  *     summary: Lấy sản phẩm theo tên danh mục
  *     tags: [Products]

@@ -15,7 +15,6 @@ router.get("/profile", authMiddleware, getProfile);
 router.put("/profile", upload.single("image"), authMiddleware, updateProfile);
 module.exports = router;
 
-
 /**
  * @swagger
  * /api/register:
@@ -40,6 +39,51 @@ module.exports = router;
  *         description: Đăng ký thành công
  *       400:
  *         description: User đã tồn tại hoặc dữ liệu không hợp lệ
+ */
+
+/**
+ * @swagger
+ * /api/login:
+ *   post:
+ *     summary: Đăng nhập người dùng
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               password:
+ *                 type: string
+ *                 format: password
+ *         application/x-www-form-urlencoded:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email: { type: string }
+ *               password: { type: string }
+ *     responses:
+ *       200:
+ *         description: Đăng nhập thành công, trả về user và token
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 user:
+ *                   $ref: '#/components/schemas/User'
+ *                 message:
+ *                   type: string
+ *                 token:
+ *                   type: string
+ *       400:
+ *         description: Sai email hoặc mật khẩu
  */
 
 /**

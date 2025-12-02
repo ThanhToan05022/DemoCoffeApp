@@ -18,7 +18,7 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/categories:
+ * /api/getAllCategory:
  *   get:
  *     summary: Lấy tất cả danh mục
  *     tags: [Categories]
@@ -38,7 +38,7 @@ module.exports = router;
  
 /**
  * @swagger
- * /api/categories:
+ * /api/createCategory:
  *   post:
  *     summary: Tạo danh mục
  *     tags: [Categories]
