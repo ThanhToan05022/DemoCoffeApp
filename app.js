@@ -1,9 +1,13 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
-const connectToDB = require("./config/db");
+
 const swaggerUi = require("swagger-ui-express");
 const { swaggerSpec } = require("./config/swagger");
+require("dotenv").config();
+
+const connectToDB = require("./config/db");
+connectToDB();
 
 const authRouter = require("./routers/auth-routers");
 const productsRouter = require("./routers/products-routers");
@@ -12,9 +16,6 @@ const cartRouter = require("./routers/cart-routers");
 
 const cors = require("cors");
 const path = require("path");
-
-require("dotenv").config();
-connectToDB();
 
 app.use(cors());
 app.use(express.json());

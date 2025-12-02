@@ -4,7 +4,7 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
-    info: { title: "BE Flutter API", version: "1.0.0" },
+    info: { title: "BE Flutter API" },
     servers: [{ url: process.env.BASE_URL || "http://localhost:3000" }],
     components: {
       securitySchemes: {
@@ -60,13 +60,13 @@ const swaggerOptions = {
             products: {
               oneOf: [
                 { type: "string", description: "Products ObjectId" },
-                { $ref: "#/components/schemas/Product" }
-              ]
+                { $ref: "#/components/schemas/Product" },
+              ],
             },
             quantity: { type: "integer", minimum: 1 },
             Size: { type: "string", nullable: true },
-            price: { type: "number" }
-          }
+            price: { type: "number" },
+          },
         },
         Cart: {
           type: "object",
@@ -75,13 +75,13 @@ const swaggerOptions = {
             user: { type: "string" },
             items: {
               type: "array",
-              items: { $ref: "#/components/schemas/CartItem" }
+              items: { $ref: "#/components/schemas/CartItem" },
             },
             totalPrice: { type: "number" },
             createdAt: { type: "string", format: "date-time", nullable: true },
-            updatedAt: { type: "string", format: "date-time", nullable: true }
-          }
-        }
+            updatedAt: { type: "string", format: "date-time", nullable: true },
+          },
+        },
       },
     },
     security: [{ bearerAuth: [] }],

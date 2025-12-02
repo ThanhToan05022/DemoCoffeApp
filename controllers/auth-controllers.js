@@ -7,43 +7,39 @@ require("dotenv").config();
 const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    const avatar = req.file ? req.file.filename : null;
+
     const checkUser = await User.findOne({ $or: [{ name }, { email }] });
-    // true
     if (checkUser) {
       return res.status(400).json({
         success: false,
-        message: "User is already exists either with same username or email",
+        message: "User already exists",
       });
     }
 
-    // hash password
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);
+
+    const avatarUrl = req.file ? req.file.location : null;
 
     const newUser = new User({
       name,
       email,
       password: hashPassword,
-      avatar,
+      avatar: avatarUrl,
     });
+
     await newUser.save();
-    if (newUser) {
-      res.status(200).json({
-        success: true,
-        message: "user registered successfully",
-      });
-    } else {
-      res.status(400).json({
-        success: false,
-        message: "User registration failed",
-      });
-    }
+
+    res.status(200).json({
+      success: true,
+      message: "User registered successfully",
+      user: newUser,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({
       success: false,
-      message: "Something error occured!! Please try again!",
+      message: "Something went wrong!",
     });
   }
 };
@@ -72,14 +68,15 @@ const loginUser = async (req, res) => {
         message: "invalid credentials",
       });
     }
-
+    const profileWithImageUrl = user.toObject();
+    profileWithImageUrl.imageUrl = user.avatar || null;
     // tao token
     const token = jwt.sign(
       {
         userId: user._id,
         email: user.email,
         name: user.name,
-        avatar: user.avatar,
+        avatar: user.profileWithImageUrl,
       },
       process.env.TOKEN_SECRET,
       {
@@ -113,7 +110,7 @@ const getProfile = async (req, res) => {
       });
     }
     const profileWithImageUrl = profile.toObject();
-    profileWithImageUrl.imageUrl = getFullImageUrl(req, profile.avatar);
+    profileWithImageUrl.imageUrl = profile.avatar || null;
     res.status(200).json({
       success: true,
       profile: profileWithImageUrl,
@@ -143,7 +140,7 @@ const updateProfile = async (req, res) => {
       updatedData.password = await bcrypt.hash(password, salt);
     }
     if (req.file) {
-      updatedData.avatar = req.file.filename;
+      updatedData.avatar = req.file.location;
     }
     const user = await User.findByIdAndUpdate(
       req.userInfo.userId,
@@ -173,10 +170,8 @@ const updateProfile = async (req, res) => {
     });
   }
 };
-const getFullImageUrl = (req,fileName) => {
+const getFullImageUrl = (req, fileName) => {
   if (!fileName) return null;
-  const baseUrl =
-    process.env.BASE_URL || `${req.protocol}://${req.get("host")}`;
-  return `${baseUrl}/uploads/${fileName}`;
+  return fileName;
 };
 module.exports = { loginUser, registerUser, getProfile, updateProfile };
