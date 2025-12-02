@@ -5,7 +5,7 @@ const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
     info: { title: "BE Flutter API" },
-    servers: [{ url: process.env.BASE_URL || "http://localhost:3000" }],
+    servers: [{ url: process.env.BASE_URL || "https://coffe-app-production.up.railway.app/" }],
     components: {
       securitySchemes: {
         bearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" },
