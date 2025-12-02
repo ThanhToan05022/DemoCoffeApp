@@ -76,7 +76,7 @@ const loginUser = async (req, res) => {
         userId: user._id,
         email: user.email,
         name: user.name,
-        avatar: user.profileWithImageUrl,
+        avatar: profileWithImageUrl.user,
       },
       process.env.TOKEN_SECRET,
       {
