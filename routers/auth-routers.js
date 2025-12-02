@@ -60,12 +60,6 @@ module.exports = router;
  *               password:
  *                 type: string
  *                 format: password
- *         application/x-www-form-urlencoded:
- *           schema:
- *             type: object
- *             properties:
- *               email: { type: string }
- *               password: { type: string }
  *     responses:
  *       200:
  *         description: Đăng nhập thành công, trả về user và token
@@ -84,6 +78,17 @@ module.exports = router;
  *                   type: string
  *       400:
  *         description: Sai email hoặc mật khẩu
+ *          content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 message:
+ *                   type: string
+ *                   example: invalid credentials
  */
 
 /**
