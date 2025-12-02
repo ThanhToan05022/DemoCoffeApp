@@ -53,13 +53,18 @@ module.exports = router;
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - email
+ *               - password
  *             properties:
  *               email:
  *                 type: string
  *                 format: email
+ *                 example: user@example.com
  *               password:
  *                 type: string
  *                 format: password
+ *               
  *     responses:
  *       200:
  *         description: Đăng nhập thành công, trả về user và token
@@ -70,15 +75,27 @@ module.exports = router;
  *               properties:
  *                 success:
  *                   type: boolean
+ *                   example: true
  *                 user:
- *                   $ref: '#/components/schemas/User'
+ *                   type: object
+ *                   properties:
+ *                     _id:
+ *                       type: string
+ *                     name:
+ *                       type: string
+ *                     email:
+ *                       type: string
+ *                     avatar:
+ *                       type: string
+ *                       nullable: true
  *                 message:
  *                   type: string
+ *                   example: Login successfully!
  *                 token:
  *                   type: string
  *       400:
  *         description: Sai email hoặc mật khẩu
- *          content:
+ *         content:
  *           application/json:
  *             schema:
  *               type: object
