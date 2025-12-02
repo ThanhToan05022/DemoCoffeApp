@@ -17,7 +17,13 @@ const cartRouter = require("./routers/cart-routers");
 const cors = require("cors");
 const path = require("path");
 
-app.use(cors());
+app.use(
+  cors({
+    allowedHeaders: "Content-Type,Authorization",
+    methods: "GET,POST,PUT,DELETE",
+    origin: "*",
+  })
+);
 app.use(express.json());
 
 app.use("/uploads", express.static("uploads"));
