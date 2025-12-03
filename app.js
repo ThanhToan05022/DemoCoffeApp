@@ -6,7 +6,6 @@ const PORT = process.env.PORT || 3000;
 const cors = require("cors");
 const path = require("path");
 
-const swaggerUi = require("swagger-ui-express");
 const { swaggerSpec, setupSwagger } = require("./config/swagger");
 
 const authRouter = require("./routers/auth-routers");
