@@ -1,7 +1,8 @@
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-
-const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
+const BASE_URL =
+  process.env.BASE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
 
 const options = {
   definition: {
@@ -138,6 +139,7 @@ const setupSwagger = (app) => {
     res.setHeader("Content-Type", "application/json");
     res.send(swaggerSpec);
   });
+  
 };
 module.exports = {
   setupSwagger,
