@@ -1,21 +1,21 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const swaggerUi = require("swagger-ui-express");
-const { swaggerSpec } = require("./config/swagger");
-require("dotenv").config();
+const cors = require("cors");
+const path = require("path");
 
-const connectToDB = require("./config/db");
-connectToDB();
+const swaggerUi = require("swagger-ui-express");
+const { swaggerSpec, setupSwagger } = require("./config/swagger");
 
 const authRouter = require("./routers/auth-routers");
 const productsRouter = require("./routers/products-routers");
 const categoryRouter = require("./routers/category-routers");
 const cartRouter = require("./routers/cart-routers");
 
-const cors = require("cors");
-const path = require("path");
+const connectToDB = require("./config/db");
+connectToDB();
 
 app.use(
   cors({
@@ -26,16 +26,20 @@ app.use(
 );
 app.use(express.json());
 
-app.use("/uploads", express.static("uploads"));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-app.get("/swagger.json", (req, res) => res.json(swaggerSpec));
+setupSwagger(app);
 
 app.use("/api", authRouter);
 app.use("/api", productsRouter);
 app.use("/api", categoryRouter);
 app.use("/api", cartRouter);
-app.listen(PORT, () => {
-  console.log(`Server is now running in the PORT ${PORT}`);
-});
+const serverless = require("serverless-http");
+const app = require("../app"); 
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server is now running on PORT ${PORT}`);
+  });
+}
+
+module.exports = serverless(app);
