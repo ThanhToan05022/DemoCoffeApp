@@ -33,8 +33,7 @@ app.use("/api", authRouter);
 app.use("/api", productsRouter);
 app.use("/api", categoryRouter);
 app.use("/api", cartRouter);
-const serverless = require("serverless-http");
-const app = require("../app"); 
+
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
@@ -42,4 +41,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = serverless(app);
+module.exports = app;
