@@ -1,6 +1,6 @@
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
-
+const cors = require("cors");
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 const options = {
