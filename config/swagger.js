@@ -90,8 +90,6 @@ const options = {
             Price: { type: "number", format: "float", example: 25000 },
             Description: { type: "string", example: "Cà phê rang xay" },
             Category: { type: "string", description: "Category ObjectId" },
-            Size: { type: "string", example: "M" },
-            Rating: { type: "string", example: "4.5" },
             imageUrl: { type: "string", format: "uri", nullable: true },
           },
         },
