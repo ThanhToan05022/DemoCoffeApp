@@ -1,6 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/api-docs/:path*", "destination": "/api/api-docs/:path*" },
-    { "source": "/swagger.json", "destination": "/api/swagger.json" }
-  ]
-}
