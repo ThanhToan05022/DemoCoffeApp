@@ -130,6 +130,7 @@ const swaggerSpec = swaggerJsDoc(options);
 const setupSwagger = (app) => {
   app.use(
     "/api-docs",
+    cors(),
     swaggerUi.serve,
     swaggerUi.setup(swaggerSpec, { explorer: true })
   );
