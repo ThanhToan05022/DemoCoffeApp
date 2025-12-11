@@ -13,8 +13,9 @@ const upload = require("../middleware/upload-image");
 
 router.post(
   "/createProducts",
-  upload.single("imageUrl"),
   authMiddleware,
+  upload.single("imageUrl"),
+  
   createProducts
 );
 router.get("/getProducts", authMiddleware, getAllProducts);
