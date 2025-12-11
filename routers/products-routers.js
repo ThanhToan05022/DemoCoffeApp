@@ -73,7 +73,6 @@ module.exports = router;
  *               Description: { type: string }
  *               Category: { type: string, description: "Category ObjectId hoặc tên, tùy router xử lý" }
  *               Size: { type: string }
- *               Rating: { type: number }
  *               image:
  *                 type: string
  *                 format: binary

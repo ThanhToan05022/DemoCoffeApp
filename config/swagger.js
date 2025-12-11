@@ -135,11 +135,10 @@ const setupSwagger = (app) => {
     swaggerUi.setup(swaggerSpec, { explorer: true })
   );
 
-  app.get("/swagger.json", (req, res) => {
+  app.get("/swagger.json", cors(), (req, res) => {
     res.setHeader("Content-Type", "application/json");
     res.send(swaggerSpec);
   });
-  
 };
 module.exports = {
   setupSwagger,
