@@ -40,6 +40,8 @@ module.exports = router;
  *   get:
  *     summary: Lấy danh sách sản phẩm
  *     tags: [Products]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Danh sách sản phẩm
@@ -59,8 +61,10 @@ module.exports = router;
  * /api/createProducts:
  *   post:
  *     summary: Tạo sản phẩm mới
- *     description: Upload ảnh bằng field "image" (multer), server sẽ lưu tên file vào field imageUrl.
+ *     description: Upload ảnh bằng field "imageUrl" (multer), server sẽ lưu tên file vào field imageUrl.
  *     tags: [Products]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -71,8 +75,9 @@ module.exports = router;
  *               Name: { type: string }
  *               Price: { type: number }
  *               Description: { type: string }
- *               Category: { type: string, description: "Category ObjectId hoặc tên, tùy router xử lý" }
+ *               Category: { type: string, description: "Category ObjectId" }
  *               Size: { type: string }
+ *               Rating: { type: string }
  *               imageUrl:
  *                 type: string
  *                 format: binary
@@ -97,6 +102,8 @@ module.exports = router;
  *   get:
  *     summary: Lấy chi tiết sản phẩm theo ID
  *     tags: [Products]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -112,7 +119,7 @@ module.exports = router;
  *               properties:
  *                 success: { type: boolean }
  *                 data: { $ref: "#/components/schemas/Product" }
- *       404:
+ *       400:
  *         description: Không tìm thấy
  */
 
@@ -122,6 +129,8 @@ module.exports = router;
  *   get:
  *     summary: Tìm sản phẩm theo tên (regex, không phân biệt hoa thường)
  *     tags: [Products]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: Name
@@ -147,10 +156,12 @@ module.exports = router;
 
 /**
  * @swagger
- * /api/getProductsByCategory/category/{categoryName}:
+ * /api/getProductsByCategory/{categoryName}:
  *   get:
  *     summary: Lấy sản phẩm theo tên danh mục
  *     tags: [Products]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: categoryName

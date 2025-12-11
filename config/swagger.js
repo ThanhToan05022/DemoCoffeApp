@@ -81,15 +81,18 @@ const options = {
           },
         },
 
-        Products: {
+        Product: {
           type: "object",
+          required: ["Name", "Price"],
           properties: {
-            _id: { type: "string" },
-            name: { type: "string" },
-            origin: { type: "string" },
-            description: { type: "string" },
-            price: { type: "number", format: "float" },
-            imageUrl: { type: "string", format: "uri" },
+            _id: { type: "string", example: "64a1f2e9b3c4d5e6f7a8b9c0" },
+            Name: { type: "string", example: "Cà phê sữa" },
+            Price: { type: "number", format: "float", example: 25000 },
+            Description: { type: "string", example: "Cà phê rang xay" },
+            Category: { type: "string", description: "Category ObjectId" },
+            Size: { type: "string", example: "M" },
+            Rating: { type: "string", example: "4.5" },
+            imageUrl: { type: "string", format: "uri", nullable: true },
           },
         },
 
@@ -97,8 +100,7 @@ const options = {
           type: "object",
           properties: {
             _id: { type: "string" },
-            name: { type: "string" },
-            slug: { type: "string" },
+            Name: { type: "string", example: "Drinks" },
           },
         },
         Favorite: {
