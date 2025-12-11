@@ -33,7 +33,7 @@ module.exports = router;
  *               password: { type: string, format: password }
  *               image:
  *                 type: string
- *                 format: binary
+ *                 format: uri
  *     responses:
  *       200:
  *         description: Đăng ký thành công
@@ -150,7 +150,7 @@ module.exports = router;
  *               password: { type: string, format: password }
  *               image:
  *                 type: string
- *                 format: binary
+ *                 format: uri
  *     responses:
  *       200:
  *         description: Cập nhật thành công

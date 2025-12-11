@@ -15,7 +15,7 @@ router.post(
   "/createProducts",
   authMiddleware,
   upload.single("imageUrl"),
-  
+
   createProducts
 );
 router.get("/getProducts", authMiddleware, getAllProducts);
@@ -62,14 +62,13 @@ module.exports = router;
  * /api/createProducts:
  *   post:
  *     summary: Tạo sản phẩm mới
- *     description: Upload ảnh bằng field "imageUrl" (multer), server sẽ lưu tên file vào field imageUrl.
  *     tags: [Products]
  *     security:
  *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
- *         multipart/form-data:
+ *         application/json:
  *           schema:
  *             type: object
  *             properties:
@@ -81,7 +80,8 @@ module.exports = router;
  *               Rating: { type: string }
  *               imageUrl:
  *                 type: string
- *                 format: binary
+ *                 format: uri
+ *                 
  *     responses:
  *       200:
  *         description: Tạo thành công
@@ -128,7 +128,7 @@ module.exports = router;
  * @swagger
  * /api/findProducts/search:
  *   get:
- *     summary: Tìm sản phẩm theo tên (regex, không phân biệt hoa thường)
+ *     
  *     tags: [Products]
  *     security:
  *       - bearerAuth: []
