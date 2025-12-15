@@ -1,4 +1,3 @@
-const { populate } = require("dotenv");
 const Cart = require("../model/Cart");
 const cartItem = require("../model/cartItem");
 
@@ -17,15 +16,18 @@ const createCart = async (req, res) => {
       Size: size,
       price,
     });
-    let cart = await Cart.findOne({ user: userId });
+    let cart = await Cart.findOne({ user: userId }).populate({
+      path: "items",
+      populate: { path: "products", model: "Products" },
+    });
     if (!cart) {
       cart = await Cart.create({
         user: userId,
-        items: [newItem._id],
+        items: newItem,
         totalPrice: price * quantity,
       });
     } else {
-      cart.items.push(newItem._id);
+      cart.items.push(newItem);
       cart.totalPrice += price * quantity;
       await cart.save();
     }
