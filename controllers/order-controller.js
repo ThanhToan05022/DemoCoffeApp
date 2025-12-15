@@ -67,12 +67,24 @@ const getCart = async (req, res) => {
       data: getCart,
     });
   } catch (error) {
-    console.error("Error creating product:", error);
-    return res.status(500).json({
+    res.status(500).json({
       success: false,
       message: "Something error occured!! Please try again!",
     });
   }
 };
-
-module.exports = { createCart, getCart };
+const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Cart.find({});
+    return res.status(200).json({
+      success: false,
+      data: orders,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Something error occured!! Please try again!",
+    });
+  }
+};
+module.exports = { createCart, getCart, getAllOrders };

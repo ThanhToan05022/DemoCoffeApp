@@ -1,12 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const { createCart, getCart } = require("../controllers/order-controller");
+const {
+  createCart,
+  getCart,
+  getAllOrders,
+} = require("../controllers/order-controller");
 const authMiddleware = require("../middleware/auth-middleware");
 router.post("/createCart", authMiddleware, createCart);
 router.get("/getCart/:user", authMiddleware, getCart);
-
+router.get("/getAllOrders", authMiddleware, getAllOrders);
 module.exports = router;
-
 
 /**
  * @swagger
