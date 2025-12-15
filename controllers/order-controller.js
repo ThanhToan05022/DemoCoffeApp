@@ -3,8 +3,8 @@ const cartItem = require("../model/cartItem");
 
 const createCart = async (req, res) => {
   try {
-    const { userId, productId, quantity, size, price } = req.body;
-    if (!userId || !productId || !quantity || !price) {
+    const { user, productId, quantity, size, price } = req.body;
+    if (!user || !productId || !quantity || !price) {
       return res.status(400).json({
         success: false,
         message: "Missing required fields",
@@ -16,13 +16,13 @@ const createCart = async (req, res) => {
       Size: size,
       price,
     });
-    let cart = await Cart.findOne({ user: userId }).populate({
+    let cart = await Cart.findOne({ user: user }).populate({
       path: "items",
       populate: { path: "products", model: "Products" },
     });
     if (!cart) {
       cart = await Cart.create({
-        user: userId,
+        user: user,
         items: newItem,
         totalPrice: price * quantity,
       });
