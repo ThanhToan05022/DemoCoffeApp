@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart' hide MultipartFile, FormData;
+import 'package:get/get.dart' hide FormData, MultipartFile;
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:projectflutter2/data/shared_preferences.dart';
 import '../../api/apiservices.dart';
 import '../../model/User.dart';
 
@@ -18,14 +17,14 @@ class ProfileController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
+
     super.onInit();
     getProfile();
   }
 
   @override
   void dispose() {
-    // TODO: implement disposeId
+
     super.dispose();
     nameController.dispose();
     passwordController.dispose();
@@ -63,8 +62,7 @@ class ProfileController extends GetxController {
   Future<UserProfileModel?> getProfile() async {
     try {
       final response = await ApiServices.get(path: '/profile');
-      // final data = response['profile'];
-      // print(data);
+
       return profile.value = UserProfileModel.fromJson(response);
     } on DioException catch (e) {
       if (e.response != null) {

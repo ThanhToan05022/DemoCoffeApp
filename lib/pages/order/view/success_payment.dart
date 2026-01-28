@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:projectflutter2/pages/order/history/orderHistory_pages.dart';
 
 import 'package:projectflutter2/routes/app_routes.dart';
 
@@ -56,7 +57,7 @@ class _SuccessPaymentState extends State<SuccessPayment> {
               ),
               child: TextButton(
                 onPressed: () {
-                  Get.offNamedUntil(AppRoutes.bottomBar, (route) => false);
+                  Get.to(OrderhistoryPages());
                 },
                 child: Text(
                   'Check My Orders',

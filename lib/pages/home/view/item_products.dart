@@ -6,7 +6,7 @@ import 'package:projectflutter2/pages/order/order_controller.dart';
 import 'package:projectflutter2/theme/NumbercurrentFormat.dart';
 import 'package:projectflutter2/theme/Theme.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import '../../../model/Products.dart';
+
 
 class ItemProducts extends StatefulWidget {
   final void Function(String id)? onTap;
@@ -40,6 +40,7 @@ class _ItemProductsState extends State<ItemProducts> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         scrollDirection: Axis.vertical,
+        addAutomaticKeepAlives: false,
         padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 12),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

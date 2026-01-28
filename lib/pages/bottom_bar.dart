@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:projectflutter2/pages/favorites/favorites_pages.dart';
 import 'package:projectflutter2/pages/order/Order_pages.dart';
 import 'package:projectflutter2/pages/order/history/orderHistory_pages.dart';

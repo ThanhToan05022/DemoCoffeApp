@@ -35,11 +35,7 @@ class NameValidator {
       return "Tên phải có ít nhất 2 ký tự";
     }
 
-    // // Kiểm tra ký tự đặc biệt hoặc số
-    // if (!RegExp(r"^[a-zA-ZÀ-ỹ\s]+$").hasMatch(value.trim())) {
-    //   return "Tên không được chứa số hoặc ký tự đặc biệt";
-    // }
 
-    return null; // ✅ Hợp lệ
+    return null;
   }
 }

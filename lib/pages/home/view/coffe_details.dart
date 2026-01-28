@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 
-import 'package:projectflutter2/pages/home/home_pages.dart';
+
 import 'package:projectflutter2/theme/Theme.dart';
-import 'package:projectflutter2/model/DetailsProducts.dart';
+
 
 import '../../bottom_bar.dart';
 import '../../order/order_controller.dart';
@@ -52,7 +52,7 @@ class _CoffeDetailsState extends State<CoffeDetails> {
           price: products?.price?.toInt() ?? 0,
           rating: products?.rating ?? "",
           size: products?.size ?? "",
-          // onPressed: widget.onPressed,
+
         ),
       );
     });

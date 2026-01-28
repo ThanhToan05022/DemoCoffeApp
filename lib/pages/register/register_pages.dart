@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projectflutter2/components/myTextButton.dart';
 import 'package:projectflutter2/components/myloginButton.dart';
-import 'package:projectflutter2/components/myloginGoogle.dart';
+
 import 'package:projectflutter2/components/mytextfield.dart';
-import 'package:projectflutter2/pages/login/login_pages.dart';
+
 import 'package:projectflutter2/pages/register/register_controller.dart';
 import 'package:projectflutter2/theme/Theme.dart';
 import 'package:projectflutter2/theme/validate.dart';

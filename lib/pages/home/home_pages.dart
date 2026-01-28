@@ -8,7 +8,7 @@ import 'package:projectflutter2/pages/home/Compoment/mySearchProducts.dart';
 import 'package:projectflutter2/components/mySetting.dart';
 import 'package:projectflutter2/components/myTextCategory.dart';
 import 'package:projectflutter2/pages/profile/profile_setting_page.dart';
-import 'package:projectflutter2/theme/Theme.dart';
+
 import '../profile/profile_controller.dart';
 import 'view/item_products.dart';
 import 'package:get/get.dart';

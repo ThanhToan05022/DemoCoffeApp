@@ -40,6 +40,7 @@ class OrderController extends GetxController {
       total += ((item.products?.price ?? 0) * (item.quantity ?? 0)).toInt();
     }
     cart.value.totalPrice = total;
+    cart.refresh();
   }
 
   Future<Cart?> createOrder({

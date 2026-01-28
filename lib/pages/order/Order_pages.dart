@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projectflutter2/pages/order/view/payment_pages.dart';
-
-import 'package:projectflutter2/pages/profile/compoment/myAvatar.dart';
-import 'package:projectflutter2/components/mySetting.dart';
 import 'package:projectflutter2/pages/order/order_controller.dart';
-import 'package:projectflutter2/pages/profile/profile_setting_page.dart';
 import '../../model/Order.dart';
 import '../../theme/NumbercurrentFormat.dart';
 

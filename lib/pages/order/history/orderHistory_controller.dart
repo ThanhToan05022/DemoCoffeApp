@@ -4,7 +4,7 @@ import 'package:projectflutter2/api/apiservices.dart';
 import 'package:projectflutter2/model/orderHistory.dart';
 
 class OrderhistoryController extends GetxController {
-  RxList<Datum> orderHistory = <Datum>[].obs;
+  RxList<History> orderHistory = <History>[].obs;
   @override
   void onInit() {
     super.onInit();
@@ -24,11 +24,11 @@ class OrderhistoryController extends GetxController {
     return null;
   }
 
-  Future<List<Datum?>> getCheckout() async {
+  Future<List<History>> getCheckout() async {
     try {
       final response = await ApiServices.get(path: '/invoices');
       List<dynamic> data = response['data'];
-      orderHistory.value = data.map((e) => Datum.fromJson(e)).toList();
+      orderHistory.value = data.map((e) => History.fromJson(e)).toList();
     } on DioException catch (e) {
       if (e.response != null) {
         print("API lỗi: ${e.response?.data}");

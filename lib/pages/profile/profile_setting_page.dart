@@ -57,12 +57,7 @@ class _SettingPageState extends State<SettingPage> {
               validate: NameValidator.validate,
             ),
             SizedBox(height: 16),
-            // Mytextfield(text: 'Email',
-            //     Obscuretext: false,
-            //     readOnly: true,
-            //     controller: profileController.emailController,
-            //     validate: EmailValidator.validate),
-            // SizedBox(height: 16,),
+
             Mytextfield(
               text: 'Password',
               Obscuretext: true,

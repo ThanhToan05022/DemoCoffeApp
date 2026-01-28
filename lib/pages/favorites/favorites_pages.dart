@@ -5,7 +5,6 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:projectflutter2/components/myFavorite.dart';
 import 'package:projectflutter2/components/mySetting.dart';
 import 'package:projectflutter2/model/Favorites.dart';
 import 'package:projectflutter2/pages/favorites/favorites_controller.dart';

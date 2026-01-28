@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,14 +27,7 @@ class _PaymentPagesState extends State<PaymentPages> {
   final orderHistoryController = Get.find<OrderhistoryController>();
   String? selectedpaymentMethod;
 
-  // dynamic cartFormArgs;
 
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   cartFormArgs = Get.arguments;
-  // }
 
   @override
   Widget build(BuildContext context) {

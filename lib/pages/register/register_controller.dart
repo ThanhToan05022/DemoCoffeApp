@@ -25,9 +25,9 @@ class RegisterController extends GetxController {
       return UserProfileModel.fromJson(response);
     } on DioException catch (e) {
       if (e.response != null) {
-        print("❌ API lỗi: ${e.response?.data}");
+        print("API lỗi: ${e.response?.data}");
       } else {
-        print("❌ Lỗi mạng: ${e.message}");
+        print("Lỗi mạng: ${e.message}");
       }
       return null;
     }
