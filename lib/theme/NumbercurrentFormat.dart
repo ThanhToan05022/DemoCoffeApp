@@ -1,9 +1,12 @@
 import 'package:intl/intl.dart';
 
-String Numbercurrentformat(current) {
+String Numbercurrentformat(num? current) {
+  final value = current ?? 0;
+
   final formatCurrent = NumberFormat.simpleCurrency(
-    locale: 'vi_vn',
+    locale: 'vi_VN',
     decimalDigits: 0,
   );
-  return formatCurrent.format(current);
+
+  return formatCurrent.format(value);
 }

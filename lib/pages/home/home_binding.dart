@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:projectflutter2/pages/favorites/favorites_controller.dart';
+import 'package:projectflutter2/pages/home/home_Setting/home_settings_controller.dart';
+import 'package:projectflutter2/pages/home/home_Setting/home_settings_controller.dart';
 import 'package:projectflutter2/pages/home/home_controller.dart';
 import 'package:projectflutter2/pages/profile/profile_binding.dart';
 
@@ -12,5 +14,7 @@ class HomeBinding extends Bindings {
     Get.lazyPut<ProfileController>(() => ProfileController());
     // Get.lazyPut(() => FavoritesController());
     Get.lazyPut<FavoritesController>(() => FavoritesController());
+    Get.lazyPut<HomeSettingsController>(() => HomeSettingsController());
   }
 }
+

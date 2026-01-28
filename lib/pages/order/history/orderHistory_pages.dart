@@ -43,6 +43,7 @@ class _OrderhistoryPagesState extends State<OrderhistoryPages> {
                 Myavatar(),
               ],
             ),
+            const SizedBox(height: 10,),
             Expanded(
               child: Obx(() {
                 final items = orderHistoryController.orderHistory;
@@ -143,6 +144,7 @@ class _OrderhistoryPagesState extends State<OrderhistoryPages> {
   Widget buildUIOrderHistory({required List<Item>? orderItem}) {
     return Container(
       width: double.infinity,
+      height: 85,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(23),
         gradient: const LinearGradient(
@@ -164,7 +166,7 @@ class _OrderhistoryPagesState extends State<OrderhistoryPages> {
                       borderRadius: BorderRadius.circular(8),
                       child: Image.network(
                         items.products?.imageUrl ?? "",
-                        height: 120,
+                        height: 85,
                         width: 55,
                       ),
                     ),

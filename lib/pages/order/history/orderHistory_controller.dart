@@ -14,6 +14,7 @@ class OrderhistoryController extends GetxController {
   Future<void> createCheckout() async {
     try {
       final response = await ApiServices.post(path: '/checkout');
+      await getCheckout();
     } on DioException catch (e) {
       if (e.response != null) {
         print("API lỗi: ${e.response?.data}");
