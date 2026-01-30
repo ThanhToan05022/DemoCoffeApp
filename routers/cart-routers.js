@@ -3,12 +3,16 @@ const router = express.Router();
 const {
   createCart,
   getCart,
-  getAllOrders,
+  deleteOrders,
+  checkout,
+  getInvoices
 } = require("../controllers/order-controller");
 const authMiddleware = require("../middleware/auth-middleware");
 router.post("/createCart", authMiddleware, createCart);
-router.get("/getCart/:user", authMiddleware, getCart);
-router.get("/getAllOrders", authMiddleware, getAllOrders);
+router.get("/getCart/", authMiddleware, getCart);
+router.post("/checkout", authMiddleware, checkout);
+router.get("/invoices", authMiddleware, getInvoices);
+router.delete("/deleteOrders/item/:id",authMiddleware,deleteOrders);
 module.exports = router;
 
 /**
@@ -32,9 +36,8 @@ module.exports = router;
  *         application/json:
  *           schema:
  *             type: object
- *             required: [userId, productId, quantity, price]
- *             properties:
- *               userId: { type: string }
+ *             required: [ productId, quantity, price]
+ *             properties:      
  *               productId: { type: string }
  *               quantity: { type: integer, minimum: 1 }
  *               size: { type: string, nullable: true }
@@ -55,12 +58,6 @@ module.exports = router;
  *     tags: [Orders]
  *     security:
  *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: user
- *         required: true
- *         schema: { type: string }
- *         description: userId
  *     responses:
  *       200:
  *         description: Giỏ hàng hiện tại

@@ -1,6 +1,7 @@
 const User = require("../model/users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const BlacklistedToken = require("../model/BlacklistedToken");
 const upload = require("../middleware/upload-image");
 require("dotenv").config();
 //register
@@ -81,7 +82,7 @@ const loginUser = async (req, res) => {
       process.env.TOKEN_SECRET,
       {
         expiresIn: "1d",
-      }
+      },
     );
 
     res.status(200).json({
@@ -101,7 +102,7 @@ const loginUser = async (req, res) => {
 
 const getProfile = async (req, res) => {
   try {
-    const userId = req.userInfo.userId;
+    const userId = req.user.userId;
     const profile = await User.findById(userId);
     if (!profile) {
       return res.status(400).json({
@@ -142,14 +143,10 @@ const updateProfile = async (req, res) => {
     if (req.file) {
       updatedData.avatar = req.file.location;
     }
-    const user = await User.findByIdAndUpdate(
-      req.userInfo.userId,
-      updatedData,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+    const user = await User.findByIdAndUpdate(req.user.userId, updatedData, {
+      new: true,
+      runValidators: true,
+    });
     if (!user) {
       return res.status(400).json({
         success: false,
@@ -174,4 +171,48 @@ const getFullImageUrl = (req, fileName) => {
   if (!fileName) return null;
   return fileName;
 };
-module.exports = { loginUser, registerUser, getProfile, updateProfile };
+// module.exports = { loginUser, registerUser, getProfile, updateProfile };
+
+// logout
+const logoutUser = async (req, res) => {
+  try {
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+
+    if (!token) {
+      return res
+        .status(400)
+        .json({ success: false, message: "No token provided" });
+    }
+
+    const already = await BlacklistedToken.findOne({ token });
+    if (already) {
+      return res.status(200).json({ success: true, message: "Logged out" });
+    }
+
+    const decoded = jwt.decode(token);
+    const expiresAt =
+      decoded && decoded.exp
+        ? new Date(decoded.exp * 1000)
+        : new Date(Date.now());
+
+    await BlacklistedToken.create({ token, expiresAt });
+
+    return res
+      .status(200)
+      .json({ success: true, message: "Logged out successfully" });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Something went wrong" });
+  }
+};
+
+module.exports = {
+  loginUser,
+  registerUser,
+  getProfile,
+  updateProfile,
+  logoutUser,
+};

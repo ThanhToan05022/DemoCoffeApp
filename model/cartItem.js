@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 
-const cartItemSchema = mongoose.Schema(
+let cartItemSchema = mongoose.Schema(
   {
     products: {
       type: mongoose.Types.ObjectId,
       ref: "Products",
-      required: true,
     },
     cart: {
       type: mongoose.Types.ObjectId,
@@ -13,7 +12,7 @@ const cartItemSchema = mongoose.Schema(
     },
     quantity: {
       type: Number,
-      required: true,
+
       min: 1,
     },
     Size: {
@@ -21,7 +20,6 @@ const cartItemSchema = mongoose.Schema(
     },
     price: {
       type: Number,
-      required: true,
     },
   },
   { timestamps: true }

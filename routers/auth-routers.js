@@ -5,12 +5,14 @@ const {
   loginUser,
   getProfile,
   updateProfile,
+  logoutUser,
 } = require("../controllers/auth-controllers");
 const authMiddleware = require("../middleware/auth-middleware");
 const upload = require("../middleware/upload-image");
 
 router.post("/register", upload.single("image"), registerUser);
 router.post("/login", upload.none(), loginUser);
+router.post("/logout", authMiddleware, logoutUser);
 router.get("/profile", authMiddleware, getProfile);
 router.put("/profile", upload.single("image"), authMiddleware, updateProfile);
 module.exports = router;
@@ -64,7 +66,7 @@ module.exports = router;
  *               password:
  *                 type: string
  *                 format: password
- *               
+ *
  *     responses:
  *       200:
  *         description: Đăng nhập thành công, trả về user và token
