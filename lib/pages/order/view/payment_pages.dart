@@ -1,8 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:projectflutter2/api/notification_services.dart';
 import 'package:projectflutter2/components/mybackButton.dart';
 import 'package:projectflutter2/pages/order/order_controller.dart';
 import 'package:projectflutter2/pages/order/view/payment_controller.dart';
@@ -26,7 +26,6 @@ class _PaymentPagesState extends State<PaymentPages> {
   final orderController = Get.find<OrderController>();
   final orderHistoryController = Get.find<OrderhistoryController>();
   String? selectedpaymentMethod;
-
 
 
   @override
@@ -230,6 +229,10 @@ class _PaymentPagesState extends State<PaymentPages> {
         onPressed: () async {
           try {
             await orderHistoryController.createCheckout();
+             await NotificationServices().showNotification(
+                title: 'Thanh toán',
+                body: 'Bạn đã thanh toán thành công đơn hàng');
+
             Get.to(SuccessPayment());
           } catch (e) {
             print(e);

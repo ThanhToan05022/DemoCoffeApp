@@ -34,7 +34,7 @@ class HomeSettingsController extends GetxController {
       await prefs.remove('token');
       await prefs.remove('email');
       await prefs.remove('password');
-      await prefs.setBool('remember_me', false);
+      // await prefs.setBool('remember_me', false);
 
       Get.snackbar(success ? 'Success' : 'Info', message, snackPosition: SnackPosition.BOTTOM);
       Get.offAllNamed(AppRoutes.login);
