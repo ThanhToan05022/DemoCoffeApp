@@ -45,6 +45,23 @@ module.exports = router;
 
 /**
  * @swagger
+ * /api/logout:
+ *   post:
+ *     summary: Đăng xuất người dùng (blacklist token)
+ *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Đã đăng xuất thành công hoặc token đã bị blacklist
+ *       400:
+ *         description: Không có token trong header
+ *       500:
+ *         description: Lỗi server
+ */
+
+/**
+ * @swagger
  * /api/login:
  *   post:
  *     summary: Đăng nhập người dùng

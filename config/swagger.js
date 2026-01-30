@@ -46,6 +46,36 @@ const options = {
               example: "secret123",
             },
             avatar: { type: "string", format: "uri", nullable: true },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
+          },
+        },
+
+        Product: {
+          type: "object",
+          required: ["Name"],
+          properties: {
+            _id: { type: "string" },
+            Name: { type: "string", example: "Cà phê sữa" },
+            Price: { type: "number", format: "float", example: 25000 },
+            Description: { type: "string", example: "Cà phê rang xay" },
+            Category: { type: "string", description: "Category ObjectId" },
+            imageUrl: { type: "string", format: "uri", nullable: true },
+            Rating: { type: "string", nullable: true },
+            Size: { type: "string", nullable: true },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
+          },
+        },
+
+        Category: {
+          type: "object",
+          required: ["Name"],
+          properties: {
+            _id: { type: "string" },
+            Name: { type: "string", example: "Drinks" },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
           },
         },
 
@@ -53,12 +83,13 @@ const options = {
           type: "object",
           properties: {
             _id: { type: "string" },
-            product: {
-              type: "string",
-              description: "ObjectId of product (Coffee) as string",
-            },
+            products: { type: "string", description: "Product ObjectId" },
+            cart: { type: "string", description: "Cart ObjectId" },
             quantity: { type: "integer", example: 1 },
-            price: { type: "number", format: "float", example: 120000 },
+            Size: { type: "string", nullable: true },
+            price: { type: "number", format: "float", example: 25000 },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
           },
         },
 
@@ -66,54 +97,41 @@ const options = {
           type: "object",
           properties: {
             _id: { type: "string" },
-            user: {
-              $ref: "#/components/schemas/User",
-              description: "Reference to User (ObjectId)",
-            },
+            user: { type: "string", description: "User ObjectId" },
             totalPrice: { type: "number", format: "float", example: 0 },
             items: {
               type: "array",
               items: { $ref: "#/components/schemas/CartItem" },
-              description: "Array of CartItem references (stored as ObjectIds)",
             },
-            paymentMethod: { type: "string", example: "card" },
+            paymentMethod: { type: "string", nullable: true },
             orderDate: { type: "string", format: "date-time" },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
           },
         },
 
-        Product: {
-          type: "object",
-          required: ["Name", "Price"],
-          properties: {
-            _id: { type: "string", example: "64a1f2e9b3c4d5e6f7a8b9c0" },
-            Name: { type: "string", example: "Cà phê sữa" },
-            Price: { type: "number", format: "float", example: 25000 },
-            Description: { type: "string", example: "Cà phê rang xay" },
-            Category: { type: "string", description: "Category ObjectId" },
-            imageUrl: { type: "string", format: "uri", nullable: true },
-          },
-        },
-
-        Category: {
+        Order: {
           type: "object",
           properties: {
             _id: { type: "string" },
-            Name: { type: "string", example: "Drinks" },
+            user: { type: "string", description: "User ObjectId" },
+            items: {
+              type: "array",
+              items: { $ref: "#/components/schemas/CartItem" },
+            },
+            totalPrice: { type: "number", format: "float" },
+            createdAt: { type: "string", format: "date-time" },
           },
         },
+
         Favorite: {
           type: "object",
           properties: {
             _id: { type: "string" },
-            user: {
-              $ref: "#/components/schemas/User",
-              description: "Reference to User (ObjectId)",
-            },
-            items: {
-              type: "array",
-              items: { $ref: "#/components/schemas/FavoriteItem" },
-              description: "List of favorite product entries",
-            },
+            user: { type: "string", description: "User ObjectId" },
+            products: { type: "string", description: "Product ObjectId" },
+            createdAt: { type: "string", format: "date-time" },
+            updatedAt: { type: "string", format: "date-time" },
           },
         },
       },
@@ -132,7 +150,7 @@ const setupSwagger = (app) => {
     "/api-docs",
     cors(),
     swaggerUi.serve,
-    swaggerUi.setup(swaggerSpec, { explorer: true })
+    swaggerUi.setup(swaggerSpec, { explorer: true }),
   );
 
   app.get("/swagger.json", cors(), (req, res) => {
