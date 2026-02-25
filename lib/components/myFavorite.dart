@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:projectflutter2/theme/Theme.dart';
 
 class myFavorite extends StatelessWidget {
-  void Function()? onPressed;
+  final void Function()? onPressed;
 
-  myFavorite({super.key, this.onPressed});
+  const myFavorite({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {

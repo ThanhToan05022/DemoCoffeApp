@@ -1,8 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 import 'package:projectflutter2/components/mySetting.dart';
 import 'package:projectflutter2/model/orderHistory.dart';
 import 'package:projectflutter2/pages/order/history/orderHistory_controller.dart';
@@ -10,9 +8,9 @@ import 'package:projectflutter2/pages/profile/compoment/myAvatar.dart';
 import 'package:projectflutter2/theme/NumbercurrentFormat.dart';
 
 class OrderhistoryPages extends StatefulWidget {
-  void Function()? onPressed;
+  final void Function()? onPressed;
 
-  OrderhistoryPages({super.key, this.onPressed});
+  const OrderhistoryPages({super.key, this.onPressed});
 
   @override
   State<OrderhistoryPages> createState() => _OrderhistoryPagesState();

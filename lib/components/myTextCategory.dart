@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:projectflutter2/model/Products.dart';
 import 'package:projectflutter2/theme/Theme.dart';
 
 class Mytextcategory extends StatefulWidget {

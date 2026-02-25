@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:projectflutter2/theme/Theme.dart';
 
 class Mysetting extends StatefulWidget {
-  void Function()? onPressed;
+  final void Function()? onPressed;
 
-  Mysetting({super.key, this.onPressed});
+  const Mysetting({super.key, this.onPressed});
 
   @override
   State<Mysetting> createState() => _MysettingState();

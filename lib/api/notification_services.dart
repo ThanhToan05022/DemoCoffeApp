@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -35,10 +34,11 @@ class NotificationServices {
     if (Platform.isAndroid) {
       final status = await Permission.notification.status;
       if (!status.isGranted) {
-        final result = await Permission.notification.request();
+        await Permission.notification.request();
       }
     }
   }
+
   Future<void> showNotification({
     int id = 0,
     required String title,

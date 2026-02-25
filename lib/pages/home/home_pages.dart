@@ -64,9 +64,9 @@ class _HomePagesState extends State<HomePages> {
 
                     const SizedBox(height: 20),
 
-                    const Text(
+                    Text(
                       "Find the best \ncoffe for you",
-                      style: TextStyle(color: Colors.white, fontSize: 28),
+                      style: TextStyle(color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black , fontSize: 28),
                     ),
                     const SizedBox(height: 35),
                     Mysearchproducts(),

@@ -3,14 +3,11 @@ import 'package:projectflutter2/components/myTextButton.dart';
 import 'package:projectflutter2/components/myloginButton.dart';
 import 'package:projectflutter2/components/myloginGoogle.dart';
 import 'package:projectflutter2/components/mytextfield.dart';
-import 'package:projectflutter2/pages/home/home_pages.dart';
 import 'package:projectflutter2/pages/login/login_controller.dart';
-import 'package:projectflutter2/pages/register/register_pages.dart';
 import 'package:projectflutter2/routes/app_routes.dart';
 import 'package:projectflutter2/theme/Theme.dart';
 import 'package:projectflutter2/theme/validate.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class WelcomePage extends StatefulWidget {

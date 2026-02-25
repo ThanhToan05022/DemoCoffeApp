@@ -24,14 +24,17 @@ class _OrderPagesState extends State<OrderPages> {
     return Scaffold(
       body: Obx(() {
         final items = orderController.cart.value.items;
+        final isDark = Theme.of(context).brightness == Brightness.dark;
+        final primaryTextColor = isDark ? Colors.white : Colors.black;
+        final secondaryTextColor = isDark ? Colors.white54 : Colors.black54;
 
         if (items == null || items.isEmpty) {
-          return const Center(
+          return Center(
             child: Text(
               'No Cart found.',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white54,
+                color: secondaryTextColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -59,12 +62,12 @@ class _OrderPagesState extends State<OrderPages> {
               children: [
                 Column(
                   children: [
-                    const Text(
+                    Text(
                       "Total Price",
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: Colors.white54,
+                        color: secondaryTextColor,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -74,7 +77,7 @@ class _OrderPagesState extends State<OrderPages> {
                       ),
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white54,
+                        color: primaryTextColor,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -174,6 +177,7 @@ class _OrderPagesState extends State<OrderPages> {
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -183,7 +187,7 @@ class _OrderPagesState extends State<OrderPages> {
                   product?.description ?? "",
                   style: TextStyle(
                     fontSize: 12,
-                    color: Color(0xffaeaeae),
+                    color: Colors.white,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -197,13 +201,16 @@ class _OrderPagesState extends State<OrderPages> {
                         borderRadius: BorderRadius.circular(10),
                         color: Color(0xff0c0f14),
                       ),
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        product?.size ?? "",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          height: 2.5,
+                      child: Center(
+                        child: Text(
+                          product?.size ?? "",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            height: 2.5,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
@@ -246,13 +253,16 @@ class _OrderPagesState extends State<OrderPages> {
                           strokeAlign: 1,
                         ),
                       ),
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        item.quantity.toString(),
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          height: 2,
+                      child: Center(
+                        child: Text(
+                          item.quantity.toString(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            height: 2,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),

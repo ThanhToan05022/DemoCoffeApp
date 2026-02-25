@@ -17,12 +17,12 @@ class Mytextbutton extends StatelessWidget {
       onPressed: onpress,
       child: RichText(
         text: TextSpan(
-          style: const TextStyle(color: TextColor, fontSize: 12),
+          style: TextStyle(color: TextColor, fontSize: 12),
           text: text,
           children: [
             TextSpan(
               text: text2,
-              style: const TextStyle(color: radius, fontSize: 12),
+              style: TextStyle(color: radius, fontSize: 12),
             ),
           ],
         ),

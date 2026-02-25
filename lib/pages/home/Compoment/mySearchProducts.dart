@@ -40,31 +40,37 @@ class _MysearchproductsState extends State<Mysearchproducts> {
             ),
             child: Padding(
               padding: const EdgeInsets.only(left: 15.0),
-              child: Row(
-                children: [
-                  Icon(Icons.search, color: Colors.white),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 19.0),
-                      child: TextField(
-                        controller: homeController.searchController,
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.symmetric(vertical: 8),
-                          hintText: "Find your coffe",
-                          hintStyle: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
+              child: Builder(
+                builder: (context) {
+                  final isDark = Theme.of(context).brightness == Brightness.dark;
+                  final textColor = isDark ? Colors.white : Colors.black;
+                  return Row(
+                    children: [
+                      Icon(Icons.search, color: textColor),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 19.0),
+                          child: TextField(
+                            controller: homeController.searchController,
+                            style: TextStyle(color: textColor),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.symmetric(vertical: 8),
+                              hintText: "Find your coffe",
+                              hintStyle: TextStyle(
+                                color: textColor.withOpacity(0.8),
+                                fontSize: 14,
+                              ),
+                            ),
+                            onSubmitted: (value) {
+                              productsSearch(value);
+                            },
                           ),
                         ),
-                        onSubmitted: (value) {
-                          productsSearch(value);
-                        },
                       ),
-                    ),
-                  ),
-                ],
+                    ],
+                  );
+                },
               ),
             ),
           ),

@@ -84,19 +84,33 @@ class _FavoritesPagesState extends State<FavoritesPages> {
                 Positioned(
                   child: IconButton(
                     onPressed: () async {
+                      final id = products.products?.id ?? "";
+                      final currentlyFav = favoritesController.datum.any(
+                        (d) => d.products?.id == id,
+                      );
                       try {
-                        final result = await favoritesController
-                            .deleteFavorites(products.products?.id ?? "");
-                        print(result);
-                        Get.snackbar(
-                          'Success',
-                          'Removed from favorites',
-                          snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: Colors.green,
-                          colorText: Colors.white,
-                        );
-                      } on Exception catch (e) {
-                        print(e);
+                        if (currentlyFav) {
+                          await favoritesController.deleteFavorites(id);
+                          Get.snackbar(
+                            'Success',
+                            'Removed from favorites',
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.green,
+                            colorText: Colors.white,
+                          );
+                        } else {
+                          await favoritesController.createFavorites(
+                            products: id,
+                          );
+                          Get.snackbar(
+                            'Success',
+                            'Added to favorites',
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: Colors.green,
+                            colorText: Colors.white,
+                          );
+                        }
+                      } catch (e) {
                         Get.snackbar(
                           'Error',
                           e.toString(),
@@ -106,7 +120,16 @@ class _FavoritesPagesState extends State<FavoritesPages> {
                         );
                       }
                     },
-                    icon: Icon(Icons.favorite, color: Colors.red),
+                    icon: Icon(
+                      Icons.favorite,
+                      color:
+                          favoritesController.datum.any(
+                            (d) =>
+                                d.products?.id == (products.products?.id ?? ""),
+                          )
+                          ? Colors.red
+                          : Colors.white,
+                    ),
                   ),
                   top: 10,
                   right: 10,
@@ -200,29 +223,7 @@ class _FavoritesPagesState extends State<FavoritesPages> {
               ],
             ),
           ),
-          // Container(
-          //   decoration: BoxDecoration(
-          //     gradient: LinearGradient(
-          //       colors: <Color>[Color(0xff262B33), Color(0xff262B33)],
-          //     ),
-          //   ),
-          //   child: Text(
-          //     'Description',
-          //     style: TextStyle(
-          //       fontSize: 14,
-          //       fontWeight: FontWeight.w400,
-          //       color: Color(0xffaeaeae),
-          //     ),
-          //   ),
-          // ),
-          // Text(
-          //   'Cappuccino is a latte made with more foam than\n steamed milk, often with a sprinkle of cocoa\n powder or cinnamon on top.',
-          //   style: TextStyle(
-          //     fontSize: 14,
-          //     fontWeight: FontWeight.w400,
-          //     color: Colors.white,
-          //   ),
-          // ),
+
         ],
       ),
     );

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:projectflutter2/pages/profile/compoment/myImageProfile.dart';
 import 'package:projectflutter2/components/mybackButton.dart';
@@ -32,7 +30,7 @@ class _SettingPageState extends State<SettingPage> {
                 Mybackbutton(onPressed: () => Get.back()),
                 Padding(
                   padding: const EdgeInsets.only(left: 130.0),
-                  child: const Text(
+                  child: Text(
                     'Setting',
                     style: TextStyle(
                       fontSize: 20,
@@ -115,17 +113,17 @@ class _SettingPageState extends State<SettingPage> {
         child: ClipOval(
           child: profileController.pathFile != null
               ? Image.network(
-            (profileController.pathFile!),
-            width: 120,
-            height: 120,
-            fit: BoxFit.cover,
-          )
+                  (profileController.pathFile!),
+                  width: 120,
+                  height: 120,
+                  fit: BoxFit.cover,
+                )
               : Image.asset(
-            'image/avatar.png',
-            width: 120,
-            height: 120,
-            fit: BoxFit.cover,
-          ),
+                  'image/avatar.png',
+                  width: 120,
+                  height: 120,
+                  fit: BoxFit.cover,
+                ),
         ),
       ),
     );

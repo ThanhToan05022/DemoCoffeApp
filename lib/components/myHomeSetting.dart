@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class Myhomesetting extends StatelessWidget {
-  String? name;
-  Widget icon;
-  void Function()? onPressed;
+  final String? name;
+  final Widget icon;
+  final void Function()? onPressed;
 
-  Myhomesetting({super.key, this.onPressed, required this.icon, this.name});
+  const Myhomesetting({super.key, this.onPressed, required this.icon, this.name});
 
   @override
   Widget build(BuildContext context) {

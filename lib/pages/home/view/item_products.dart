@@ -140,7 +140,7 @@ class _ItemProductsState extends State<ItemProducts> {
               children: [
                 Text(
                   name,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: White,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -149,7 +149,7 @@ class _ItemProductsState extends State<ItemProducts> {
                 const SizedBox(height: 1),
                 Text(
                   description,
-                  style: const TextStyle(color: White, fontSize: 12),
+                  style: TextStyle(color: White, fontSize: 12),
                 ),
                 const SizedBox(height: 10),
                 Row(
