@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projectflutter2/components/mySetting.dart';
+import 'package:projectflutter2/components/myThemeData.dart';
 import 'package:projectflutter2/pages/home/home_Setting/home_settings_pages.dart';
 
 import 'package:projectflutter2/pages/home/view/BeanDetails.dart';
@@ -49,6 +50,7 @@ class _HomePagesState extends State<HomePages> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Mysetting(onPressed: () => Get.to(HomeSettingsPages())),
+                        myThemeData(),
                         Padding(
                           padding: const EdgeInsets.only(right: 15.0),
                           child: Myavatar(

@@ -126,10 +126,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 Mytextbutton(
                   text: "Dont have account? Click ",
                   onpress: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Register()),
-                    );
+                    Get.toNamed(AppRoutes.register);
                   },
                   text2: "Register",
                 ),

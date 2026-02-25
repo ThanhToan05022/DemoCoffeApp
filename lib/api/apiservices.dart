@@ -3,7 +3,7 @@ import '../data/shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiServices {
-  static const String baseUrl = "http://10.0.2.2:3000/api/";
+  static const String baseUrl = "https://democoffeapp.onrender.com/api/";
   static final Dio _dio = Dio(
     BaseOptions(
       baseUrl: baseUrl,
